@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,12 +15,81 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Programs', href: '#programs' },
-    { name: 'Staff', href: '#staff' },
-    { name: 'Parents', href: '#parents' },
-    { name: 'News', href: '#news' },
-    { name: 'Contact', href: '#contact' },
+    {
+      name: 'Home',
+      href: '/'
+    },
+    {
+      name: 'About River East',
+      href: '#about',
+      submenu: [
+        { name: 'Calendar', href: '#calendar' },
+        { name: 'Our Mission & Vision', href: '#mission-vision' },
+        { name: 'Our History', href: '#history' },
+        { name: 'Arrival & Dismissal', href: '#arrival-dismissal' },
+        { name: 'Location', href: '#location' },
+        { name: 'FAQs', href: '#faqs' },
+        { name: 'School Reviews', href: '#reviews' },
+        { name: 'SLT', href: '#slt' },
+      ],
+    },
+    {
+      name: 'Contact Us',
+      href: '#contact',
+    },
+    {
+      name: 'Class & Club Pages',
+      href: '#classes',
+      submenu: [
+        { name: '3K', href: '#3k' },
+        { name: 'PreK', href: '#prek' },
+        { name: 'Kindergarten', href: '#kindergarten' },
+        { name: 'First Grade', href: '#first-grade' },
+        { name: 'Second Grade', href: '#second-grade' },
+        { name: 'Third Grade', href: '#third-grade' },
+        { name: 'Fourth Grade', href: '#fourth-grade' },
+        { name: 'Fifth Grade', href: '#fifth-grade' },
+        { name: 'Art', href: '#art' },
+        { name: 'Science', href: '#science' },
+      ],
+    },
+    {
+      name: 'For Families',
+      href: '#families',
+      submenu: [
+        { name: 'Parent Coordinator', href: '#parent-coordinator' },
+        { name: 'NYC Schools Account', href: 'https://www.schoolsaccount.nyc/' },
+        { name: 'DOE Family Page', href: 'https://www.schools.nyc.gov/school-life/support/family-support' },
+        { name: 'Transport OPT', href: '#transport-opt' },
+      ],
+    },
+    {
+      name: 'Kids\' Corner',
+      href: '#kids',
+      submenu: [
+        { name: 'ABCYa', href: 'https://www.abcya.com/' },
+        { name: 'EPIC Digital Library', href: 'https://www.getepic.com/' },
+        { name: 'FOSS Science Games', href: '#foss' },
+        { name: 'Kidz Search', href: 'https://www.kidzsearch.com/' },
+        { name: 'NewsELA', href: 'https://newsela.com/' },
+        { name: 'PBSKids', href: 'https://pbskids.org/' },
+        { name: 'Power Typing', href: '#power-typing' },
+        { name: 'Raz Kids', href: 'https://www.kidsa-z.com/' },
+        { name: 'Skoolbo', href: 'https://www.skoolbo.com/' },
+        { name: 'Starfall', href: 'https://www.starfall.com/' },
+      ],
+    },
+    {
+      name: 'Teacher\'s Turn',
+      href: '#teachers',
+      submenu: [
+        { name: 'Payroll Portal', href: '#payroll' },
+        { name: 'SESIS', href: '#sesis' },
+        { name: 'Shop DOE', href: '#shop-doe' },
+        { name: 'STARS Classroom', href: '#stars' },
+        { name: 'Sub Central', href: '#sub-central' },
+      ],
+    },
   ];
 
   return (
@@ -70,15 +140,49 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 md:flex">
+            <div className="hidden items-center gap-6 md:flex">
               {navLinks.map((link) => (
-                <a
+                <div
                   key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:underline"
+                  className="relative"
+                  onMouseEnter={() => link.submenu && setOpenDropdown(link.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  {link.name}
-                </a>
+                  <a
+                    href={link.href}
+                    className="flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:underline"
+                  >
+                    {link.name}
+                    {link.submenu && (
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+                  </a>
+
+                  {/* Dropdown Menu */}
+                  {link.submenu && openDropdown === link.name && (
+                    <div className="absolute left-0 top-full mt-2 w-56 rounded-lg border border-gray-100 bg-white py-2 shadow-lg">
+                      {link.submenu.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          target={item.href.startsWith('http') ? '_blank' : undefined}
+                          rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-800"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -126,16 +230,57 @@ const Navbar = () => {
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
             <div className="border-t border-gray-100 px-6 py-4 md:hidden">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-medium text-gray-700 transition-colors hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:underline"
-                  >
-                    {link.name}
-                  </a>
+                  <div key={link.name}>
+                    {link.submenu ? (
+                      <div>
+                        <button
+                          onClick={() =>
+                            setOpenDropdown(openDropdown === link.name ? null : link.name)
+                          }
+                          className="flex w-full items-center justify-between text-base font-medium text-gray-700 transition-colors hover:text-blue-800"
+                        >
+                          {link.name}
+                          <svg
+                            className={`h-5 w-5 transition-transform ${
+                              openDropdown === link.name ? 'rotate-180' : ''
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        {openDropdown === link.name && (
+                          <div className="mt-2 ml-4 flex flex-col gap-2 border-l-2 border-blue-100 pl-4">
+                            {link.submenu.map((item) => (
+                              <a
+                                key={item.name}
+                                href={item.href}
+                                target={item.href.startsWith('http') ? '_blank' : undefined}
+                                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="text-sm text-gray-600 transition-colors hover:text-blue-800"
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <a
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block text-base font-medium text-gray-700 transition-colors hover:text-blue-800"
+                      >
+                        {link.name}
+                      </a>
+                    )}
+                  </div>
                 ))}
                 <a
                   href="#enroll"
