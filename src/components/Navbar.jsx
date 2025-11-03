@@ -20,74 +20,46 @@ const Navbar = () => {
       href: '/'
     },
     {
-      name: 'About River East',
+      name: 'About',
       href: '#about',
       submenu: [
-        { name: 'Calendar', href: '#calendar' },
-        { name: 'Our Mission & Vision', href: '#mission-vision' },
-        { name: 'Our History', href: '#history' },
-        { name: 'Arrival & Dismissal', href: '#arrival-dismissal' },
-        { name: 'Location', href: '#location' },
-        { name: 'FAQs', href: '#faqs' },
-        { name: 'School Reviews', href: '#reviews' },
+        { name: 'Our Campus (Pictures)', href: '#campus' },
+        { name: 'Our Academics', href: '#academics' },
+        { name: 'Our Mission and Vision', href: '#mission-vision' },
+        { name: 'Our People', href: '#people' },
+      ],
+    },
+    {
+      name: 'Admissions',
+      href: '#admissions',
+    },
+    {
+      name: 'Families',
+      href: '#families',
+      submenu: [
+        { name: '2025-2026 School Calendar', href: 'https://www.schools.nyc.gov/calendar/2025-2026-school-year-calendar' },
+        { name: 'NYC Schools Account', href: 'https://www.schoolsaccount.nyc/' },
+        { name: 'Parent Handbook', href: '#parent-handbook' },
+        { name: 'PTA', href: '#pta' },
         { name: 'SLT', href: '#slt' },
       ],
     },
     {
-      name: 'Contact Us',
-      href: '#contact',
-    },
-    {
-      name: 'Class & Club Pages',
-      href: '#classes',
+      name: 'Partners',
+      href: '#partners',
       submenu: [
-        { name: '3K', href: '#3k' },
-        { name: 'PreK', href: '#prek' },
-        { name: 'Kindergarten', href: '#kindergarten' },
-        { name: 'First Grade', href: '#first-grade' },
-        { name: 'Second Grade', href: '#second-grade' },
-        { name: 'Third Grade', href: '#third-grade' },
-        { name: 'Fourth Grade', href: '#fourth-grade' },
-        { name: 'Fifth Grade', href: '#fifth-grade' },
-        { name: 'Art', href: '#art' },
-        { name: 'Science', href: '#science' },
+        { name: 'Beacon', href: '#beacon' },
+        { name: 'DMF Youth', href: '#dmf-youth' },
+        { name: 'Reading Partners', href: '#reading-partners' },
+        { name: '92nd St. Y', href: '#92nd-st-y' },
       ],
     },
     {
-      name: 'For Families',
-      href: '#families',
+      name: 'Students',
+      href: '#students',
       submenu: [
-        { name: 'Parent Coordinator', href: '#parent-coordinator' },
-        { name: 'NYC Schools Account', href: 'https://www.schoolsaccount.nyc/' },
-        { name: 'DOE Family Page', href: 'https://www.schools.nyc.gov/school-life/support/family-support' },
-        { name: 'Transport OPT', href: '#transport-opt' },
-      ],
-    },
-    {
-      name: 'Kids\' Corner',
-      href: '#kids',
-      submenu: [
-        { name: 'ABCYa', href: 'https://www.abcya.com/' },
-        { name: 'EPIC Digital Library', href: 'https://www.getepic.com/' },
-        { name: 'FOSS Science Games', href: '#foss' },
-        { name: 'Kidz Search', href: 'https://www.kidzsearch.com/' },
-        { name: 'NewsELA', href: 'https://newsela.com/' },
-        { name: 'PBSKids', href: 'https://pbskids.org/' },
-        { name: 'Power Typing', href: '#power-typing' },
-        { name: 'Raz Kids', href: 'https://www.kidsa-z.com/' },
-        { name: 'Skoolbo', href: 'https://www.skoolbo.com/' },
-        { name: 'Starfall', href: 'https://www.starfall.com/' },
-      ],
-    },
-    {
-      name: 'Teacher\'s Turn',
-      href: '#teachers',
-      submenu: [
-        { name: 'Payroll Portal', href: '#payroll' },
-        { name: 'SESIS', href: '#sesis' },
-        { name: 'Shop DOE', href: '#shop-doe' },
-        { name: 'STARS Classroom', href: '#stars' },
-        { name: 'Sub Central', href: '#sub-central' },
+        { name: 'Google Classroom', href: 'https://classroom.google.com/' },
+        { name: 'School Foods Menu', href: '#school-foods-menu' },
       ],
     },
   ];
@@ -103,15 +75,15 @@ const Navbar = () => {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav
-          className={`relative mt-4 rounded-2xl transition-all duration-200 ${
+          className={`relative mt-4 rounded-3xl border transition-all duration-300 ease-smooth ${
             isScrolled
-              ? 'bg-white shadow-md'
-              : 'bg-white/60 backdrop-blur-md shadow-sm'
+              ? 'bg-white shadow-lg border-gray-200/80'
+              : 'bg-white/70 backdrop-blur-xl shadow-md border-white/20'
           }`}
           aria-label="Primary navigation"
         >
 
-          <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center justify-between px-6 py-5">
             {/* Logo and School Name */}
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-800 to-cyan-600">
@@ -130,10 +102,10 @@ const Navbar = () => {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-semibold tracking-tight text-gray-900">
+                <span className="text-lg font-semibold tracking-tighter text-gray-900">
                   River East Elementary
                 </span>
-                <span className="hidden text-xs text-gray-600 sm:block">
+                <span className="hidden text-xs font-medium text-gray-500 sm:block">
                   PS 37 • East Harlem
                 </span>
               </div>
@@ -150,7 +122,7 @@ const Navbar = () => {
                 >
                   <a
                     href={link.href}
-                    className="flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:underline"
+                    className="flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-md px-1 py-0.5"
                   >
                     {link.name}
                     {link.submenu && (
@@ -168,14 +140,14 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   {link.submenu && openDropdown === link.name && (
-                    <div className="absolute left-0 top-full mt-2 w-56 rounded-lg border border-gray-100 bg-white py-2 shadow-lg">
+                    <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-gray-100 bg-white/95 backdrop-blur-lg py-2 shadow-xl animate-fade-in">
                       {link.submenu.map((item) => (
                         <a
                           key={item.name}
                           href={item.href}
                           target={item.href.startsWith('http') ? '_blank' : undefined}
                           rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-800"
+                          className="block px-4 py-2.5 text-sm text-gray-700 transition-all duration-150 hover:bg-blue-50 hover:text-blue-800 hover:pl-5"
                         >
                           {item.name}
                         </a>
@@ -190,7 +162,7 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               <a
                 href="#enroll"
-                className="hidden rounded-full bg-gradient-to-r from-blue-800 to-cyan-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:scale-105 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:inline-flex"
+                className="hidden rounded-full bg-gradient-to-r from-blue-800 to-cyan-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:to-cyan-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:inline-flex"
               >
                 Enroll Now
               </a>
@@ -198,7 +170,7 @@ const Navbar = () => {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 md:hidden"
+                className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 md:hidden"
                 aria-expanded={isMobileMenuOpen}
                 aria-label="Toggle navigation menu"
               >
