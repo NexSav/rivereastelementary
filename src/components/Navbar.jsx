@@ -15,256 +15,279 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    {
-      name: 'Home',
-      href: '/'
-    },
+    { name: 'Home', href: '/' },
     {
       name: 'About',
       href: '#about',
-      submenu: [
-        { name: 'Our Campus (Pictures)', href: '#campus' },
-        { name: 'Our Academics', href: '#academics' },
-        { name: 'Our Mission and Vision', href: '#mission-vision' },
-        { name: 'Our People', href: '#people' },
-      ],
+      dropdown: [
+        { name: 'Our Campus (Pictures)', href: '/coming-soon' },
+        { name: 'Our Academics', href: '/coming-soon' },
+        { name: 'Our Mission and Vision', href: '/mission-vision' },
+        { name: 'Our People', href: '/coming-soon' },
+      ]
     },
-    {
-      name: 'Admissions',
-      href: '#admissions',
-    },
+    { name: 'Admissions', href: '/coming-soon' },
     {
       name: 'Families',
       href: '#families',
-      submenu: [
+      dropdown: [
         { name: '2025-2026 School Calendar', href: 'https://www.schools.nyc.gov/calendar/2025-2026-school-year-calendar' },
         { name: 'NYC Schools Account', href: 'https://www.schoolsaccount.nyc/' },
-        { name: 'Parent Handbook', href: '#parent-handbook' },
-        { name: 'PTA', href: '#pta' },
-        { name: 'SLT', href: '#slt' },
-      ],
+        { name: 'Parent Handbook', href: '/coming-soon' },
+        { name: 'PTA', href: '/coming-soon' },
+        { name: 'SLT', href: '/coming-soon' },
+      ]
     },
     {
       name: 'Partners',
       href: '#partners',
-      submenu: [
-        { name: 'Beacon', href: '#beacon' },
-        { name: 'DMF Youth', href: '#dmf-youth' },
-        { name: 'Reading Partners', href: '#reading-partners' },
-        { name: '92nd St. Y', href: '#92nd-st-y' },
-      ],
+      dropdown: [
+        { name: 'Beacon', href: 'https://www.scan-harbor.org/our-programs/' },
+        { name: 'DMF Youth', href: 'https://dmfyouth.org/?gad_source=1&gad_campaignid=11038165362&gbraid=0AAAAACPQ653cdWjJ_6Vsp2EMvzzmioKv_&gclid=CjwKCAiAlfvIBhA6EiwAcErpyUeODX5obUWRXwFR18aUbcbur0yRpoZZ0HbOpqa2V3OmoQgnPFrTThoCyQIQAvD_BwE' },
+        { name: 'Reading Partners', href: 'https://readingpartners.org/get-involved/where-how/new-york/?utm_source=google&utm_medium=cpc&gad_source=1&gad_campaignid=22557078719&gbraid=0AAAAADsbqKR2CbL6rwFv08CX3iFxuyLOc&gclid=CjwKCAiAlfvIBhA6EiwAcErpyVlbdxZg0DFPWi2w8OTxkecMJvW-YET-9_EbZl8Zh1coE8jTO5qIQhoCK50QAvD_BwE' },
+        { name: '92nd St. Y', href: 'https://www.92ny.org/children-family/school-engagement-in-the-arts/school-based-residencies' },
+      ]
     },
     {
       name: 'Students',
       href: '#students',
-      submenu: [
-        { name: 'Google Classroom', href: 'https://classroom.google.com/' },
-        { name: 'School Foods Menu', href: '#school-foods-menu' },
-      ],
+      dropdown: [
+        { name: 'Google Classroom', href: 'http://classroom.google.com' },
+        { name: 'School Foods Menu', href: 'https://www.schools.nyc.gov/school-life/food/menus' },
+      ]
     },
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg rounded-b-[2.5rem] py-3'
+          : 'bg-transparent py-6'
+      }`}
+    >
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-blue-800 focus:rounded-lg focus:shadow-lg focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:bg-white focus:text-blue-900 focus:rounded-full focus:shadow-xl focus:font-bold ring-2 ring-blue-600"
       >
         Skip to main content
       </a>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav
-          className={`relative mt-4 rounded-3xl border transition-all duration-300 ease-smooth ${
-            isScrolled
-              ? 'bg-white shadow-lg border-gray-200/80'
-              : 'bg-white/70 backdrop-blur-xl shadow-md border-white/20'
-          }`}
-          aria-label="Primary navigation"
-        >
-
-          <div className="flex items-center justify-between px-6 py-5">
-            {/* Logo and School Name */}
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-800 to-cyan-600">
-                <svg
-                  className="h-6 w-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <nav className="flex items-center justify-between" aria-label="Global">
+          {/* Logo */}
+          <div className="flex lg:flex-1">
+            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-3 group">
+              <span className="sr-only">River East Elementary</span>
+              <div className={`flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 text-white shadow-lg transition-all duration-300 ${isScrolled ? 'h-10 w-10' : 'h-12 w-12'}`}>
+                {/* Book Icon (Allowed Motif) */}
+                <svg className={`transition-all duration-300 ${isScrolled ? 'h-5 w-5' : 'h-6 w-6'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-semibold tracking-tighter text-gray-900">
-                  River East Elementary
-                </span>
-                <span className="hidden text-xs font-medium text-gray-500 sm:block">
-                  PS 37 • East Harlem
-                </span>
+              <div className={`flex flex-col transition-colors duration-300 ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+                <span className="font-bold text-lg leading-none tracking-tight">River East</span>
+                <span className="text-xs font-medium tracking-wide opacity-90">Elementary</span>
               </div>
-            </div>
+            </a>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden items-center gap-6 md:flex">
-              {navLinks.map((link) => (
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex lg:gap-x-8">
+            {navLinks.map((item) => (
+              item.dropdown ? (
                 <div
-                  key={link.name}
-                  className="relative"
-                  onMouseEnter={() => link.submenu && setOpenDropdown(link.name)}
+                  key={item.name}
+                  className="relative group"
+                  onMouseEnter={() => setOpenDropdown(item.name)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  <a
-                    href={link.href}
-                    className="flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-blue-800 focus:outline-none focus-visible:text-blue-800 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-md px-1 py-0.5"
+                  <button
+                    className={`flex items-center gap-1 text-sm font-semibold leading-6 transition-colors duration-300 hover:text-cyan-400 ${
+                      isScrolled ? 'text-gray-900' : 'text-white/90'
+                    }`}
                   >
-                    {link.name}
-                    {link.submenu && (
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
-                  </a>
-
-                  {/* Dropdown Menu */}
-                  {link.submenu && openDropdown === link.name && (
-                    <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-gray-100 bg-white/95 backdrop-blur-lg py-2 shadow-xl animate-fade-in">
-                      {link.submenu.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          target={item.href.startsWith('http') ? '_blank' : undefined}
-                          rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="block px-4 py-2.5 text-sm text-gray-700 transition-all duration-150 hover:bg-blue-50 hover:text-blue-800 hover:pl-5"
-                        >
-                          {item.name}
-                        </a>
-                      ))}
+                    {item.name}
+                    <svg
+                      className={`h-4 w-4 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {openDropdown === item.name && (
+                    <div className="absolute left-0 top-full pt-2 z-50">
+                      <div className={`w-64 rounded-xl shadow-2xl ring-1 overflow-hidden ${
+                        isScrolled
+                          ? 'bg-white ring-gray-900/5'
+                          : 'bg-white/95 backdrop-blur-xl ring-white/10'
+                      }`}>
+                        {item.dropdown.map((subItem, idx) => {
+                          const isExternal = subItem.href.startsWith('http');
+                          return (
+                            <a
+                              key={subItem.name}
+                              href={subItem.href}
+                              {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                              className={`block px-5 py-3 text-sm font-semibold transition-colors ${
+                                idx !== item.dropdown.length - 1 ? 'border-b border-gray-100' : ''
+                              } ${
+                                isScrolled
+                                  ? 'text-gray-700 hover:bg-blue-50 hover:text-blue-700'
+                                  : 'text-gray-800 hover:bg-blue-900 hover:text-white'
+                              }`}
+                            >
+                              {subItem.name}
+                            </a>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="flex items-center gap-4">
-              <a
-                href="#enroll"
-                className="hidden rounded-full bg-gradient-to-r from-blue-800 to-cyan-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:to-cyan-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:inline-flex"
-              >
-                Enroll Now
-              </a>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 md:hidden"
-                aria-expanded={isMobileMenuOpen}
-                aria-label="Toggle navigation menu"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-semibold leading-6 transition-colors duration-300 hover:text-cyan-400 ${
+                    isScrolled ? 'text-gray-900' : 'text-white/90'
+                  }`}
                 >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
+                  {item.name}
+                </a>
+              )
+            ))}
           </div>
 
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="border-t border-gray-100 px-6 py-4 md:hidden">
-              <div className="flex flex-col gap-3">
-                {navLinks.map((link) => (
-                  <div key={link.name}>
-                    {link.submenu ? (
-                      <div>
-                        <button
-                          onClick={() =>
-                            setOpenDropdown(openDropdown === link.name ? null : link.name)
-                          }
-                          className="flex w-full items-center justify-between text-base font-medium text-gray-700 transition-colors hover:text-blue-800"
-                        >
-                          {link.name}
-                          <svg
-                            className={`h-5 w-5 transition-transform ${
-                              openDropdown === link.name ? 'rotate-180' : ''
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </button>
-                        {openDropdown === link.name && (
-                          <div className="mt-2 ml-4 flex flex-col gap-2 border-l-2 border-blue-100 pl-4">
-                            {link.submenu.map((item) => (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                target={item.href.startsWith('http') ? '_blank' : undefined}
-                                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-sm text-gray-600 transition-colors hover:text-blue-800"
-                              >
-                                {item.name}
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <a
-                        href={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-base font-medium text-gray-700 transition-colors hover:text-blue-800"
+          {/* CTA & Mobile Toggle */}
+          <div className="flex flex-1 justify-end items-center gap-4">
+            <a
+              href="#enroll"
+              className={`hidden rounded-full px-6 py-2.5 text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 lg:block ${
+                isScrolled 
+                  ? 'bg-blue-900 text-white hover:bg-blue-800' 
+                  : 'bg-white text-blue-900 hover:bg-gray-50'
+              }`}
+            >
+              Enroll Now
+            </a>
+
+            <button
+              type="button"
+              className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 lg:hidden ${
+                isScrolled ? 'text-gray-900' : 'text-white'
+              }`}
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              {/* Using simple hamburger lines (CSS or SVG) - using SVG as preferred */}
+              <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 z-50 lg:hidden ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`} 
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Panel */}
+        <div 
+          className={`fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <div className="flex items-center justify-between">
+            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-900 text-white">
+                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <span className="font-bold text-gray-900">River East</span>
+            </a>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Close menu</span>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {navLinks.map((item) => (
+                  item.dropdown ? (
+                    <div key={item.name} className="space-y-1">
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                        className="-mx-3 flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       >
-                        {link.name}
-                      </a>
-                    )}
-                  </div>
+                        {item.name}
+                        <svg
+                          className={`h-5 w-5 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {openDropdown === item.name && (
+                        <div className="pl-4 space-y-1">
+                          {item.dropdown.map((subItem) => {
+                            const isExternal = subItem.href.startsWith('http');
+                            return (
+                              <a
+                                key={subItem.name}
+                                href={subItem.href}
+                                {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-700"
+                              >
+                                {subItem.name}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      {item.name}
+                    </a>
+                  )
                 ))}
+              </div>
+              <div className="py-6">
                 <a
                   href="#enroll"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-800 to-cyan-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:scale-105 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                  className="block rounded-lg bg-blue-900 px-3 py-2.5 text-center text-base font-semibold leading-7 text-white hover:bg-blue-800"
                 >
                   Enroll Now
                 </a>
               </div>
             </div>
-          )}
-        </nav>
+          </div>
+        </div>
       </div>
     </header>
   );
