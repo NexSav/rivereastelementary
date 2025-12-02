@@ -20,7 +20,7 @@ const Navbar = () => {
       name: 'About',
       href: '#about',
       dropdown: [
-        { name: 'Our Campus (Pictures)', href: '/coming-soon' },
+        { name: 'Our Campus (Pictures)', href: '/our-campus' },
         { name: 'Our Academics', href: '/coming-soon' },
         { name: 'Our Mission and Vision', href: '/mission-vision' },
         { name: 'Our People', href: '/coming-soon' },
